@@ -1,0 +1,57 @@
+# Normalize line endings across platforms.
+#
+# Without this, Windows clones with core.autocrlf=true convert LF -> CRLF on
+# checkout and back to LF on commit, which makes every existing file look
+# "modified" in `git status` until normalized.
+#
+# Rule: git auto-detects text vs binary; text files are stored as LF in the
+# repo and checked out as LF on every platform. Windows-specific scripts that
+# the OS requires as CRLF are explicit exceptions.
+
+* text=auto eol=lf
+
+# Source and config (text — explicit LF).
+*.cpp        text eol=lf
+*.h          text eol=lf
+*.ui         text eol=lf
+*.qrc        text eol=lf
+*.pro        text eol=lf
+*.pri        text eol=lf
+*.qss        text eol=lf
+*.ts         text eol=lf
+*.md         text eol=lf
+*.txt        text eol=lf
+*.json       text eol=lf
+*.svg        text eol=lf
+*.xml        text eol=lf
+*.html       text eol=lf
+*.rc         text eol=lf
+
+# Windows scripts must stay CRLF.
+*.bat        text eol=crlf
+*.cmd        text eol=crlf
+
+# Binary assets — leave untouched.
+*.ico        binary
+*.png        binary
+*.jpg        binary
+*.jpeg       binary
+*.gif        binary
+*.flac       binary
+*.wav        binary
+*.mp3        binary
+*.qm         binary
+*.ttf        binary
+*.otf        binary
+*.woff       binary
+*.woff2      binary
+*.pdf        binary
+*.dll        binary
+*.lib        binary
+*.exe        binary
+*.so         binary
+*.a          binary
+*.zip        binary
+*.7z         binary
+*.tar        binary
+*.gz         binary
